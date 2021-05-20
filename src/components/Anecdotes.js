@@ -1,6 +1,19 @@
 import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 
-const Anecdotes = ({ anecdotes, vote }) => {
+import { voteAnecdote } from '../actions/anecdotes'
+
+const Anecdotes = () => {
+	const dispatch = useDispatch()
+
+	const anecdotes = useSelector((state) => {
+		return state
+	})
+
+	const vote = (id) => {
+		dispatch(voteAnecdote(id))
+	}
+
 	return (
 		<div>
 			{anecdotes.map((anecdote) => (
