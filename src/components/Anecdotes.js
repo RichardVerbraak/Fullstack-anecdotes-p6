@@ -11,6 +11,15 @@ const Anecdotes = ({ setShow }) => {
 		return state.anecdotes
 	})
 
+	const filterState = useSelector((state) => {
+		return state.filter
+	})
+	const { filter } = filterState
+
+	const filteredAnecdotes = anecdotes.filter((anecdote) => {
+		return anecdote.content.toLowerCase().includes(filter.toLowerCase())
+	})
+
 	const vote = ({ id, content }) => {
 		dispatch(voteAnecdote(id))
 		dispatch(setNotification(`You voted on "${content}"`))
@@ -24,7 +33,7 @@ const Anecdotes = ({ setShow }) => {
 
 	return (
 		<div>
-			{anecdotes.map((anecdote) => (
+			{filteredAnecdotes.map((anecdote) => (
 				<div key={anecdote.id}>
 					<div>{anecdote.content}</div>
 					<div>
