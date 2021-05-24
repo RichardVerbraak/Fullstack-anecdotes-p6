@@ -1,3 +1,10 @@
+const getAnecdotes = (anecdotes) => {
+	return {
+		type: 'GET_ANECDOTES',
+		payload: anecdotes,
+	}
+}
+
 const voteAnecdote = (id) => {
 	return {
 		type: 'VOTE',
@@ -12,4 +19,4 @@ const createAnecdote = (anecdote) => {
 	}
 }
 
-export { voteAnecdote, createAnecdote }
+export { voteAnecdote, createAnecdote, getAnecdotes }

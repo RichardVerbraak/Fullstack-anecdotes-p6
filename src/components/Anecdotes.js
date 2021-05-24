@@ -4,12 +4,10 @@ import { useSelector, useDispatch } from 'react-redux'
 import { voteAnecdote } from '../actions/anecdotes'
 import { removeNotification, setNotification } from '../actions/notifications'
 
-const Anecdotes = ({ setShow }) => {
+const Anecdotes = ({ setShow, anecdotes }) => {
 	const dispatch = useDispatch()
 
-	const anecdotes = useSelector((state) => {
-		return state.anecdotes
-	})
+	console.log(anecdotes)
 
 	const filterState = useSelector((state) => {
 		return state.filter
@@ -17,6 +15,7 @@ const Anecdotes = ({ setShow }) => {
 	const { filter } = filterState
 
 	const filteredAnecdotes = anecdotes.filter((anecdote) => {
+		console.log(anecdote)
 		return anecdote.content.toLowerCase().includes(filter.toLowerCase())
 	})
 
