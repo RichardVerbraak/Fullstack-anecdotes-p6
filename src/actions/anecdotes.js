@@ -1,7 +1,13 @@
-const getAnecdotes = (anecdotes) => {
-	return {
-		type: 'GET_ANECDOTES',
-		payload: anecdotes,
+import axios from 'axios'
+
+const getAnecdotes = () => {
+	return async (dispatch) => {
+		const { data } = await axios.get('http://localhost:3001/anecdotes')
+
+		dispatch({
+			type: 'GET_ANECDOTES',
+			payload: data,
+		})
 	}
 }
 

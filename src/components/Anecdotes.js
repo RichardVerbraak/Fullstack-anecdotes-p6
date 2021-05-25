@@ -7,15 +7,12 @@ import { removeNotification, setNotification } from '../actions/notifications'
 const Anecdotes = ({ setShow, anecdotes }) => {
 	const dispatch = useDispatch()
 
-	console.log(anecdotes)
-
 	const filterState = useSelector((state) => {
 		return state.filter
 	})
 	const { filter } = filterState
 
 	const filteredAnecdotes = anecdotes.filter((anecdote) => {
-		console.log(anecdote)
 		return anecdote.content.toLowerCase().includes(filter.toLowerCase())
 	})
 

@@ -19,13 +19,7 @@ const App = () => {
 	const { anecdotes } = anecdotesState
 
 	useEffect(() => {
-		const fetchAnecdotes = async () => {
-			const { data } = await axios.get('http://localhost:3001/anecdotes')
-			console.log(data)
-			dispatch(getAnecdotes(data))
-		}
-
-		fetchAnecdotes()
+		dispatch(getAnecdotes())
 	}, [dispatch])
 
 	return (
