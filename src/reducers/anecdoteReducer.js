@@ -36,12 +36,7 @@ const anecdotesReducer = (state = { anecdotes: [] }, action) => {
 			})
 
 		case 'ADD_ANECDOTE': {
-			const anecdote = {
-				content: action.payload,
-				votes: 0,
-			}
-
-			return [...state, anecdote]
+			return [...state.anecdotes, action.payload]
 		}
 
 		default:

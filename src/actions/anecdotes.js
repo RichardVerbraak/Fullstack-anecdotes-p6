@@ -19,9 +19,19 @@ const voteAnecdote = (id) => {
 }
 
 const createAnecdote = (anecdote) => {
-	return {
-		type: 'ADD_ANECDOTE',
-		payload: anecdote,
+	return async (dispatch) => {
+		const { data } = await axios.post('http://localhost:3001/anecdotes', {
+			content: anecdote,
+			votes: 0,
+		})
+
+		dispatch({
+			type: 'ADD_ANECDOTE',
+			payload: data,
+		})
+
+		// Fetch again
+		dispatch(getAnecdotes())
 	}
 }
 
