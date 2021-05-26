@@ -31,16 +31,10 @@ const createAnecdote = (anecdote) => {
 
 const voteAnecdote = (anecdote) => {
 	return async (dispatch) => {
-		const updatedAnecdote = {
-			content: anecdote.content,
-			id: anecdote.id,
+		await axios.put(`http://localhost:3001/anecdotes/${anecdote.id}`, {
+			...anecdote,
 			votes: anecdote.votes + 1,
-		}
-
-		await axios.put(
-			`http://localhost:3001/anecdotes/${anecdote.id}`,
-			updatedAnecdote
-		)
+		})
 
 		dispatch(getAnecdotes())
 	}
