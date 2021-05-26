@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { setNotification } from './notifications'
 
 const getAnecdotes = () => {
 	return async (dispatch) => {
@@ -40,17 +41,6 @@ const voteAnecdote = (anecdote) => {
 			`http://localhost:3001/anecdotes/${anecdote.id}`,
 			updatedAnecdote
 		)
-
-		dispatch({
-			type: 'SET_NOTIFICATION',
-			payload: `You voted on ${anecdote.content}`,
-		})
-
-		setTimeout(() => {
-			dispatch({
-				type: 'REMOVE_NOTIFICATION',
-			})
-		}, 5000)
 
 		dispatch(getAnecdotes())
 	}

@@ -1,14 +1,16 @@
-const setNotification = (message) => {
-	return {
-		type: 'SET_NOTIFICATION',
-		payload: message,
+const setNotification = (message, time) => {
+	return async (dispatch) => {
+		dispatch({
+			type: 'SET_NOTIFICATION',
+			payload: message,
+		})
+
+		setTimeout(() => {
+			dispatch({
+				type: 'REMOVE_NOTIFICATION',
+			})
+		}, time * 1000)
 	}
 }
 
-const removeNotification = (message) => {
-	return {
-		type: 'REMOVE_NOTIFICATION',
-	}
-}
-
-export { setNotification, removeNotification }
+export { setNotification }

@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { voteAnecdote } from '../actions/anecdotes'
-import { removeNotification, setNotification } from '../actions/notifications'
+import { setNotification } from '../actions/notifications'
 
 const Anecdotes = ({ setShow, anecdotes }) => {
 	const dispatch = useDispatch()
@@ -18,6 +18,7 @@ const Anecdotes = ({ setShow, anecdotes }) => {
 
 	const vote = (anecdote) => {
 		dispatch(voteAnecdote(anecdote))
+		dispatch(setNotification(`You voted on ${anecdote.content}`, 5))
 	}
 
 	return (

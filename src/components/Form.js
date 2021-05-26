@@ -2,9 +2,9 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 
 import { createAnecdote } from '../actions/anecdotes'
-import { removeNotification, setNotification } from '../actions/notifications'
+import { setNotification } from '../actions/notifications'
 
-const Form = ({ setShow }) => {
+const Form = () => {
 	const dispatch = useDispatch()
 
 	const add = (e) => {
@@ -14,13 +14,7 @@ const Form = ({ setShow }) => {
 		const message = `You created ${anecdote}`
 
 		dispatch(createAnecdote(anecdote))
-		dispatch(setNotification(message))
-		setShow(true)
-
-		setTimeout(() => {
-			dispatch(removeNotification())
-			setShow(false)
-		}, 5000)
+		dispatch(setNotification(message, 3))
 	}
 
 	return (
