@@ -28,13 +28,6 @@ const anecdotesReducer = (state = { anecdotes: [] }, action) => {
 				anecdotes: action.payload,
 			}
 
-		case 'VOTE':
-			return state.map((anecdote) => {
-				return anecdote.id === action.payload
-					? { ...anecdote, votes: anecdote.votes + 1 }
-					: anecdote
-			})
-
 		case 'ADD_ANECDOTE': {
 			return [...state.anecdotes, action.payload]
 		}

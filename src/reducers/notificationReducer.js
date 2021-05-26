@@ -1,5 +1,5 @@
 const notificationReducer = (
-	state = { message: '', visible: false },
+	state = { message: null, visible: false },
 	action
 ) => {
 	switch (action.type) {
@@ -11,7 +11,7 @@ const notificationReducer = (
 
 		case 'REMOVE_NOTIFICATION':
 			return {
-				message: '',
+				message: null,
 				visible: false,
 			}
 

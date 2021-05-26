@@ -16,15 +16,8 @@ const Anecdotes = ({ setShow, anecdotes }) => {
 		return anecdote.content.toLowerCase().includes(filter.toLowerCase())
 	})
 
-	const vote = ({ id, content }) => {
-		dispatch(voteAnecdote(id))
-		dispatch(setNotification(`You voted on "${content}"`))
-		setShow(true)
-
-		setTimeout(() => {
-			setShow(false)
-			dispatch(removeNotification())
-		}, 5000)
+	const vote = (anecdote) => {
+		dispatch(voteAnecdote(anecdote))
 	}
 
 	return (

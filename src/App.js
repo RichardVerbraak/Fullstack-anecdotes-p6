@@ -10,7 +10,6 @@ import Notification from './components/Notification'
 import { getAnecdotes } from './actions/anecdotes'
 
 const App = () => {
-	const [show, setShow] = useState(false)
 	const dispatch = useDispatch()
 
 	const anecdotesState = useSelector((state) => {
@@ -18,21 +17,24 @@ const App = () => {
 	})
 	const { anecdotes } = anecdotesState
 
+	const notificationState = useSelector((state) => {
+		return state.notification
+	})
+	const { visible } = notificationState
+
 	useEffect(() => {
 		dispatch(getAnecdotes())
 	}, [dispatch])
 
 	return (
 		<div>
-			{show && <Notification />}
+			{visible && <Notification />}
 			<Filter />
 			<h2>Anecdotes</h2>
 
-			{anecdotes && anecdotes.length && (
-				<Anecdotes anecdotes={anecdotes} setShow={setShow} />
-			)}
+			{anecdotes && anecdotes.length && <Anecdotes anecdotes={anecdotes} />}
 
-			<Form setShow={setShow} />
+			<Form />
 		</div>
 	)
 }
