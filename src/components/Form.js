@@ -1,20 +1,18 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, connect } from 'react-redux'
 
 import { createAnecdote } from '../actions/anecdotes'
 import { setNotification } from '../actions/notifications'
 
-const Form = () => {
-	const dispatch = useDispatch()
-
+const Form = ({ createAnecdote, setNotification }) => {
 	const add = (e) => {
 		e.preventDefault()
 
 		const anecdote = e.target.anecdote.value
 		const message = `You created ${anecdote}`
 
-		dispatch(createAnecdote(anecdote))
-		dispatch(setNotification(message, 3))
+		createAnecdote(anecdote)
+		setNotification(message, 3)
 	}
 
 	return (
@@ -30,4 +28,17 @@ const Form = () => {
 	)
 }
 
-export default Form
+const mapDispatchToProps = (dispatch) => {
+	return {
+		createAnecdote: (anecdote) => {
+			dispatch(createAnecdote(anecdote))
+		},
+		setNotification: (message, time) => {
+			dispatch(setNotification(message, time))
+		},
+	}
+}
+
+const ConnectedForm = connect(null, mapDispatchToProps)(Form)
+
+export default ConnectedForm
